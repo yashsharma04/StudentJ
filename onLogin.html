@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Admin</title>
+	<link rel="stylesheet" type="text/css" href="css/onLogin.css">
+	<script src="js/onLogin.js"></script>
+	<script type="text/javascript" src='js/common.js'></script>
+</head>
+<body>
+	<div class='header'  data-position="fixed" >
+		<p class='admin' >Admin</p>
+		<a href="login.html" onclick="logout()" class='logout'>Logout</a>	
+	</div>
+	<nav>
+	  <ul>
+	    <li>
+	    <button class="btnlist" onclick="gotoHome()" type="button">Home</button>
+	    <!-- <a class='btnlist' href="#">Show Departments</a> -->
+	    </li>
+	    <li><button class="btnlist" onclick="makeHod()" type="button">Make HOD</button></li>
+	    <li><button class="btnlist" onclick="showTeachers()" type="button">Show Teachers</button></li>
+	  </ul>
+	</nav>
+	<div id='mainContent'>
+		<button type="button" id='btn1' class='btn' onclick="return dep();" >Add Department</button>
+		<br><br>
+		<button type="button" id='btn2' class='btn' onclick="return tea();" >Add Teachers</button>
+		<br><br>
+		<button type="button" id='btn3'  class='btn' onclick="return sub();">Add Subjects </button>
+		<br><br>
+		<!-- <input type="text" id="dep" name="dep" placeholder="Add a Department "> -->
+		<input list="dep" name="dep">
+		<datalist id="dep">
+		</datalist>
+		<br><br>
+		<button type="button" id='subd' class='btn' onclick="subd()" >Submit Department</button>
+		<br><br>
+		<input type="text" id="sub" name="sub" placeholder="Add a Subject ">
+		<br><br>
+		<select id='select'></select>
+		<br><br>
+		<button type="button" id='subs' class='btn' onclick="subs()" >Submit Subject</button>
+		<br>
+		<input type="text" id="tea" name="tea" placeholder="Teacher Username">
+		<br>
+		<br>
+		<select id="select_departments" onchange="change_subjects(this)"> 
+		</select>
+		<select id='select_subjects'>
+		</select><br><br>
+		<button type="button" class='btn' onclick="subt()" id='subt'>Submit Teacher</button>
+		<div id='content'>
+		</div>
+	</div>
+	<div id='showTeacher'>
+		<button type="button" onclick="byDepartment(this)" class='btn' >By Department</button>
+		<button type="button" onclick="bySubject()" class='btn'>By Subject</button>
+	</div>
+	<div id='makeHod'>
+		<label>Choose Department and Teacher </label><br><br>
+		
+		<select id='hoddep' onchange="changeHodDepartment()">
+			
+		</select>
+		<select id="hodteacher">
+			
+		</select>
+		<br><br>
+		<button class="btn" onclick="makeHodFinal()" type="button">Make Hod</button>
+	</div>
+	<br>
+	<br>
+	<div id='onlyDepartment'>
+		<select id="dd" onchange="onDepartmentChange()">
+		</select>
+		<br><br>
+
+		<label id="error"></label>
+		
+		<table id='table'>
+			<thead>
+				<tr>
+					<th id='dd'>Department</th>
+					<th>Teacher Name</th>
+				</tr>
+			</thead>
+			<tbody id='body'>
+
+			</tbody>
+		</table>
+	</div>
+
+	<div id='onlySubject'>
+		<select id="ss" onchange="onSubjectChange()" >
+		</select>
+		<br><br>
+		<label id="error2"></label>
+		<table id='table2'>
+			<thead>
+				<tr>
+					<th id='sss'>Subject</th>
+					<th>Teacher Name</th>
+				</tr>
+			</thead>
+			<tbody id='body2'>
+
+			</tbody>
+		</table>
+	</div>
+</body>
+</html>

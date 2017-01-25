@@ -1,0 +1,27 @@
+.container 
+{
+	text-align: center ;
+	margin:auto ;
+	border: 2px solid ;
+	width: 40%;
+	padding: 10px;
+	margin-top: 150px ;
+
+}
+.btn1 
+{
+		background-color: #4CAF50; 
+		border: none;	
+		color: white;
+		text-align: center;
+
+		font-size: 18px;
+}
+input[type="text"]
+{
+	border-radius: 10px;
+}
+input[type="password"]
+{
+	border-radius: 10px;
+}

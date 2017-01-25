@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Dashboard</title>
+	<link rel="stylesheet" type="text/css" href="css/onLogin.css">
+	<script type="text/javascript" src='js/addStudent.js'></script>
+	<script type="text/javascript" src='js/common.js'></script>
+</head>
+<body>
+	<div class='header'  data-position="fixed" >
+		<!-- write teacher name  --> 
+		<a href='teacherLogin.html' style='margin-top: 10px;font-size: 20px; text-decoration: none;' class='admin' id='name'></p>
+		<a 	></a>
+	</div>
+	<nav>
+	<img src="img/profile.jpg" width="170" height="150" alt="Profile Photo">
+	  <ul>
+  	    <!-- <li><button class="btnlist btn" onclick="addStudent()" type="button">Add Student</button></li> -->
+	    <!-- <li><button class="btnlist" onclick="changePassword()" type="button">Change Password</button></li> -->
+	    <!-- <li><button class="btnlist" type="button">Random 1</button></li> -->
+	    <!-- <li><button class="btnlist" onclick="showTeachers()" type="button">Random 2 </button></li> -->
+	  </ul>		
+	</nav>
+
+	<div id='main_content'>	
+		<label>Student Name:</label>
+		<input type="text" id="student_name" name="student_name"><br><br>
+		<label>UserName:</label>
+		<input type="text" id="user_name" name="user_name"><br><br>
+		<label>Password:</label>
+		<input type="password" id="password" name="password"><br><br>
+		<label>Confirm Password:</label>
+		<input type="password" id="cpassword" name="cpassword"><br><br>
+
+		<label id="error"></label><br><br>
+		
+		<button type="button" onclick="add()" class='btn'>Add</button>
+		<button type="button" class="btn" onclick="cancel()" >Cancel</button>
+	</div>
+</body>
+</html>
+<!-- <input type="password" disabled="true" id='password'>
+<input type="" > -->

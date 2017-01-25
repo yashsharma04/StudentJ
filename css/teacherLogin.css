@@ -1,0 +1,83 @@
+.header 
+{
+	width: 100%;
+	float :left ;
+	background-color: #ee6e73 ;
+	margin-bottom: 10px;
+	margin-top: none ;
+
+}
+.logout
+{
+	/*float : right	;*/
+	/*margin-top: 15px;*/
+	/*color: white; */
+	/*background-color: #ee6e73;*/
+	/*border : none;*/
+	/*margin-right: 10px;*/
+	/*font-size: 17px;*/
+	/*text-decoration: none ;*/
+}
+
+.admin 
+{
+	margin-left: 10px;
+	float: left ;
+	color: white ;
+	font-size: 17px;
+}
+.btn
+{
+	background-color: #2bbbad;
+	text-align: center ;
+	border-radius: 3px; 
+	border: none ;
+	font-size: 16px;
+	text-decoration: none;
+	padding: 10px;
+	color:white;
+
+
+}
+nav {
+    float: left;
+    max-width: 	170px;
+    /*margin: 0;*/
+    padding: 1em;
+    height: 600px	;
+	border-right: 2px solid;
+	margin-right: 20px;
+    /*background-color: grey;		*/
+
+}
+nav ul {
+    list-style-type: none;
+
+    /*padding: 0;*/
+}
+   
+/*nav ul a {
+    text-decoration: none;
+}*/
+
+.btnlist
+{
+
+	background-color: #2bbbad;
+	color: white ;
+	text-decoration: none; 
+	padding:2px ;
+	margin-bottom: 7px;
+	border: none ;
+	font-size: 16px;
+	float: left;
+
+	
+}
+/*.sidebar 
+{
+	border: 1px solid ;
+	float: right;
+	height: 600px; 
+	width: none;
+}*/

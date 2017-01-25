@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Edit Details</title>
+	<link rel="stylesheet" type="text/css" href="css/onLogin.css">
+	<script type="text/javascript" src='js/editTeacher.js'></script>
+	<script type="text/javascript" src='js/common.js'></script>
+</head>
+<body>
+	<div class='header'  data-position="fixed" >
+		<!-- write teacher name  --> 
+		<a href='teacherLogin.html' style='margin-top: 10px;font-size: 20px; text-decoration: none;' class='admin' id='name'></p>
+		<a ></a>
+	</div>
+	<nav>
+	<img src="img/profile.jpg" width="170" height="150" alt="Profile Photo">
+	  <ul>
+	    <!-- <li><button class="btnlist" onclick="changePassword()" type="button">Change Password</button></li> -->
+	    <!-- <li><button class="btnlist" type="button">Random 1</button></li> -->
+	    <!-- <li><button class="btnlist" onclick="showTeachers()" type="button">Random 2 </button></li> -->
+	  </ul>		
+	</nav>
+	<div id='main_content'>	
+		<!-- <form onsubmit="saveDetails()"> -->
+			<label>Name: </label> <input id="teacher_name" type="text" name="teacher_name"  ><br><br>
+			<label>Department: </label><input type="text" name="dept_name" id="dept_name" disabled="true" ><br><br>
+			<label>Subjects Teaching: </label><input type="text" name="subjects" id="subjects" disabled="true"></label><br><br>
+			<label>UserName :</label><input type="text" name="username" id="username" disabled="true"></label><br><br>
+			<label>Role :</label><label id="role"></label><br><br>
+			<h3>Personal Details</h3>
+			<label>Phone Number :</label><input type="number" id="phno" name="phno"><br><br>
+			<label>Address :</label><input type="text" name="address" id="address"><br><br>
+			<label>Higher School :</label><input type="text" name="hsc" id="hsc"><br><br>
+			<label>Bachelors:</label><input type="text" name="bach" id="bach"><br><br>
+			<label>Masters:</label><input type="text" name="masters" id="masters"><br><br>
+			<label id="error"></label><br><br>
+			
+			<input class='btn' type="submit" onclick="saveDetails()" value="Save">	
+			<input class='btn' type="submit" onclick="cancel()" value="Cancel">	
+		<!-- </form> -->		
+	</div>
+</body>
+</html>
+
+
+<!-- <input type="password" disabled="true" id='password'>
+<input type="" > -->
