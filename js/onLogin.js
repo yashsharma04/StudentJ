@@ -1,4 +1,4 @@
-	var givenDepartments = ["Computer Science","Electronics","Mechanical","Civil","Mechatronics","Information Technology","Chemical","BioMed"] ; 
+	
 	document.addEventListener("DOMContentLoaded", function(event) { 	
 
 				if(localStorage.getItem("loggedin")==undefined || localStorage.getItem("loggedin")=="false" )
@@ -26,6 +26,7 @@
 						}
 				}
 		});
+		var givenDepartments = ["Computer Science","Electronics","Mechanical","Civil","Mechatronics","Information Technology","Chemical","BioMed"] ; 
 		function populate()
 		{
 			var datalist = document.getElementById("dep");
@@ -374,14 +375,14 @@
 				}
 			}
 		}
-		function dep() 
+		function showDepartments() 
 		{
 			changeToNone();
 			// document.getElementById("dep").style.display= "block" ;
 			document.getElementById("subd").style.display= "block" ;
 			document.getElementsByName("dep")[0].style.display="block";
 		}
-		function tea()
+		function showTeachers()
 		{
 			changeToNone();
 			document.getElementById("tea").style.display= "block" ;
@@ -418,7 +419,7 @@
 			}
 			
 		}
-		function sub()
+		function showSubjects()
 		{
 			changeToNone();
 			document.getElementById("sub").style.display= "block" ;
@@ -434,12 +435,10 @@
 				select.appendChild(option);
 			}
 		}
-		function subd() 
+		function submitDepartment() 
 		{
 
 			var department =document.getElementsByName("dep")[0].value;
-
-
 			if(department.trim()==""){
 				alert("Field Empty");
 			}
@@ -479,7 +478,7 @@
 				}
 			}
 		}
-		function subt(){
+		function submitTeacher(){
 			if (localStorage.getItem("teachersArray") ==undefined){
 				var teacher_name = document.getElementById("tea").value;
 				if(""==teacher_name.trim()){
@@ -585,7 +584,7 @@
 			}
 			return false;
 		}
-		function subs()
+		function submitStudent()
 		{
 			var subjectValue  = document.getElementById("sub").value ;
 			if(""==subjectValue.trim()){

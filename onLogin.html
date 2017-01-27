@@ -22,24 +22,24 @@
 	  </ul>
 	</nav>
 	<div id='mainContent'>
-		<button type="button" id='btn1' class='btn' onclick="return dep();" >Add Department</button>
+		<button type="button" id='btn1' class='btn' onclick="return showDepartments();" >Add Department</button>
 		<br><br>
-		<button type="button" id='btn2' class='btn' onclick="return tea();" >Add Teachers</button>
+		<button type="button" id='btn2' class='btn' onclick="return showTeachers();" >Add Teachers</button>
 		<br><br>
-		<button type="button" id='btn3'  class='btn' onclick="return sub();">Add Subjects </button>
+		<button type="button" id='btn3'  class='btn' onclick="return showSubjects();">Add Subjects </button>
 		<br><br>
 		<!-- <input type="text" id="dep" name="dep" placeholder="Add a Department "> -->
 		<input list="dep" name="dep">
 		<datalist id="dep">
 		</datalist>
 		<br><br>
-		<button type="button" id='subd' class='btn' onclick="subd()" >Submit Department</button>
+		<button type="button" id='subd' class='btn' onclick="submitDepartment()" >Submit Department</button>
 		<br><br>
 		<input type="text" id="sub" name="sub" placeholder="Add a Subject ">
 		<br><br>
 		<select id='select'></select>
 		<br><br>
-		<button type="button" id='subs' class='btn' onclick="subs()" >Submit Subject</button>
+		<button type="button" id='subs' class='btn' onclick="submitStudent()" >Submit Subject</button>
 		<br>
 		<input type="text" id="tea" name="tea" placeholder="Teacher Username">
 		<br>
@@ -48,7 +48,7 @@
 		</select>
 		<select id='select_subjects'>
 		</select><br><br>
-		<button type="button" class='btn' onclick="subt()" id='subt'>Submit Teacher</button>
+		<button type="button" class='btn' onclick="submitTeacher()" id='subt'>Submit Teacher</button>
 		<div id='content'>
 		</div>
 	</div>
