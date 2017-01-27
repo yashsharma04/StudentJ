@@ -1,5 +1,5 @@
 
-		document.addEventListener("DOMContentLoaded", function(event) { 
+		$(document).ready(function() { 
 			if(localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")=="false" || localStorage.getItem("loggedin")==null)
 			{
 				// do nothing 
@@ -17,6 +17,42 @@
 					window.open("studentLogin.html","_self");		
 				}
 			}
+
+
+			$("#btn").click(function(){
+				var username = document.getElementById("username").value;
+				var password = document.getElementById("password").value;
+				if(checkIfEmpty(username,password)){
+					document.getElementById("lb").innerText = "Fields Empty";
+					document.getElementById("lb").style.color = "red";
+					return false ;			
+				}
+				else if (checkIfAdmin(username,password)){
+
+					localStorage.setItem("loggedin",0);
+					localStorage.setItem("username","admin");
+					window.open("onLogin.html","_self");
+					// return true ;
+				}
+				else if(checkIfTeacher(username,password)){
+
+					localStorage.setItem("loggedin",1);
+					localStorage.setItem("username",username);
+					window.location.href="teacherLogin.html";
+				}
+				else if(checkIfStudent(username,password))
+				{
+					localStorage.setItem("loggedin",2);
+					localStorage.setItem("username",username);
+					window.location.href="studentLogin.html";
+				}
+				else{
+					document.getElementById("lb").innerText = "UserName or Password wrong";
+					document.getElementById("lb").style.color = "red";
+					return false ;			
+				}
+			
+		}) ;
 			
 		});	
 		function checkIfEmpty(username,password)
@@ -64,40 +100,6 @@
 			}
 
 		}
-		function check(){
-			var username = document.getElementById("username").value;
-			var password = document.getElementById("password").value;
-			if(checkIfEmpty(username,password)){
-				document.getElementById("lb").innerText = "Fields Empty";
-				document.getElementById("lb").style.color = "red";
-				return false ;			
-			}
-			else if (checkIfAdmin(username,password)){
 
-				localStorage.setItem("loggedin",0);
-				localStorage.setItem("username","admin");
-				window.open("onLogin.html","_self");
-				// return true ;
-			}
-			else if(checkIfTeacher(username,password)){
-
-				localStorage.setItem("loggedin",1);
-				localStorage.setItem("username",username);
-				// count = 1 ;
-				window.location.href="teacherLogin.html";
-			}
-			else if(checkIfStudent(username,password))
-			{
-				localStorage.setItem("loggedin",2);
-				localStorage.setItem("username",username);
-				window.location.href="studentLogin.html";
-			}
-			else{
-				document.getElementById("lb").innerText = "UserName or Password wrong";
-				document.getElementById("lb").style.color = "red";
-				return false ;			
-			}
-			
-		}
 	
 	
