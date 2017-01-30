@@ -1,6 +1,5 @@
-document.addEventListener("DOMContentLoaded", function(event) { 
+$(function(){ 
 
-	console.log("inside teacher login");
 	if(localStorage.getItem("loggedin")=="admin" || localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")=="false" || localStorage.getItem("loggedin")== null)
 	{
 		window.open("login.html","_self");
@@ -13,7 +12,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 	{
 		document.getElementById("name").innerText= localStorage.getItem("username");	
 		var students = JSON.parse(localStorage.getItem("students"));
-
 		for(var i=0 ;i<students.length ;i++)
 		{
 			if (students[i].username==localStorage.getItem("username"))
@@ -30,9 +28,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		}	
 	}
 });
-
 function editDetails() {
 	window.open("editStudent.html","_self");
 }
-
-

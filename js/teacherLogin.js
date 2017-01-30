@@ -1,4 +1,4 @@
-$(document).ready(function(){ 
+$(function(){ 
 	var ids = {
 		"teacher_name":document.getElementById("teacher_name"),
 		"dept_name":document.getElementById("dept_name"),
