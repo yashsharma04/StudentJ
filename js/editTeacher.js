@@ -1,6 +1,17 @@
-document.addEventListener("DOMContentLoaded", function(event) {
-
-	console.log("inside edit teacher ");
+$(function() {
+	var ids = {
+			"teacher_name": document.getElementById("teacher_name"),
+			"dept_name":document.getElementById("dept_name"),
+			"subjects":document.getElementById("subjects"),
+			"username":document.getElementById("username"),
+			"role":document.getElementById("role"),
+			"phno":document.getElementById("phno"),
+			"address":document.getElementById("address"),
+			"hsc":document.getElementById("hsc"),
+			"bach":document.getElementById("bach"),
+			"masters":document.getElementById("masters"),
+			"error":document.getElementById("error")
+	};
 	if (localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")==null || localStorage.getItem("loggedin")=="false")
 	{
 		window.open("login.html","_self");
@@ -17,70 +28,69 @@ document.addEventListener("DOMContentLoaded", function(event) {
 		{
 			if (teachersArray[i].user_name==username)
 			{
-				document.getElementById("teacher_name").value=teachersArray[i].teacher_name;
-				document.getElementById("dept_name").value=teachersArray[i].dep_name;
-				document.getElementById("subjects").value = teachersArray[i].sub_name;
-				document.getElementById("username").value = teachersArray[i].user_name;
-				document.getElementById("role").innerText = teachersArray[i].role;
+				ids.teacher_name.value=teachersArray[i].teacher_name;
+				ids.dept_name.value=teachersArray[i].dep_name;
+				ids.subjects.value = teachersArray[i].sub_name;
+				ids.username.value = teachersArray[i].user_name;
+				ids.role.innerText = teachersArray[i].role;
 
 				var personalArray = JSON.parse(localStorage.getItem("personalArray"));
-				document.getElementById("phno").value = personalArray[i].phno;
-				document.getElementById("address").value = personalArray[i].address;
-				document.getElementById("hsc").value = personalArray[i].hsc;
-				document.getElementById("bach").value = personalArray[i].bachelors;
-				document.getElementById("masters").value = personalArray[i].masters;
-				document.getElementById("teacher_name").value = personalArray[i].teacher_name;
+				ids.phno.value = personalArray[i].phno;
+				ids.address.value = personalArray[i].address;
+				ids.hsc.value = personalArray[i].hsc;
+				ids.bach.value = personalArray[i].bachelors;
+				ids.masters.value = personalArray[i].masters;
+				ids.teacher_name.value = personalArray[i].teacher_name;
 			}
 		}
 	}
-	
-}); 
-function saveDetails()
-{
-	var personalArray = JSON.parse(localStorage.getItem("personalArray"));
-	var teacher_name = document.getElementById("teacher_name").value;
-	var username = localStorage.getItem("username");	
-	var phno = document.getElementById("phno").value;
-	var address = document.getElementById("address").value;
-	var hsc = document.getElementById("hsc").value;
-	var bach = document.getElementById("bach").value;
-	var masters = document.getElementById("masters").value;
+	$("#save_details").click(function(){
+		var personalArray = JSON.parse(localStorage.getItem("personalArray"));
+		var teacher_name = ids.teacher_name.value;
+		var username = localStorage.getItem("username");	
+		var phno = ids.phno.value;
+		var address = ids.address.value;
+		var hsc = ids.hsc.value;
+		var bach = ids.bach.value;
+		var masters = ids.masters.value;
 
-	if(!onlyCharactersAllowed(teacher_name))
-	{
-		document.getElementById("error").innerText= "Only Characters allowed in name";
-		document.getElementById("error").style.color = "red";	
-	}
-	else if(!checkNumber(phno))
-	{
-		document.getElementById("error").innerText= "Undefined Phone Number";
-		document.getElementById("error").style.color = "red";
-	}
-	else if (!checkAddress(address))
-	{
-		document.getElementById("error").innerText= "Minimum 5 characters in Address Required";
-		document.getElementById("error").style.color = "red";			
-	}
-	else 
-	{
-		for(var i =0 ;i<personalArray.length;i++)
+		if(!onlyCharactersAllowed(teacher_name))
 		{
-			if (personalArray[i].username==username)
+			ids.error.innerText= "Only Characters allowed in name";
+			ids.error.style.color = "red";	
+		}
+		else if(!checkNumber(phno))
+		{
+			ids.error.innerText= "Undefined Phone Number";
+			ids.error.style.color = "red";
+		}
+		else if (!checkAddress(address))
+		{
+			ids.error.innerText= "Minimum 5 characters in Address Required";
+			ids.error.style.color = "red";			
+		}
+		else 
+		{
+			for(var i =0 ;i<personalArray.length;i++)
 			{
-				personalArray[i].teacher_name=teacher_name ; 
-				personalArray[i].phno=phno;
-				personalArray[i].address=address;
-				personalArray[i].hsc=hsc;
-				personalArray[i].bachelors=bach;
-				personalArray[i].masters=masters;
-				localStorage.setItem("personalArray",JSON.stringify(personalArray));
-				window.open("teacherLogin.html","_self");
-				break;  
+				if (personalArray[i].username==username)
+				{
+					personalArray[i].teacher_name=teacher_name ; 
+					personalArray[i].phno=phno;
+					personalArray[i].address=address;
+					personalArray[i].hsc=hsc;
+					personalArray[i].bachelors=bach;
+					personalArray[i].masters=masters;
+					localStorage.setItem("personalArray",JSON.stringify(personalArray));
+					window.open("teacherLogin.html","_self");
+					break;  
+				}
 			}
 		}
-	}
-}	
-function cancel()
-{
-	window.open("teacherLogin.html","_self");
-}
+	});
+
+	$("#cancel").click(function(){
+		window.open("teacherLogin.html","_self");
+	});
+
+});

@@ -1,6 +1,10 @@
-	document.addEventListener("DOMContentLoaded", function(event) {
-
-		console.log("inside edit teacher ");
+	$(function(){
+		var ids = {
+			"student_name": document.getElementById("student_name"),
+			"user_name":document.getElementById("user_name"),
+			"password":document.getElementById("password"),
+			"cpassword":document.getElementById("cpassword")
+		};
 		if (localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")==null || localStorage.getItem("loggedin")=="false")
 		{
 			window.open("login.html","_self");
@@ -12,18 +16,14 @@
 			else if(localStorage.getItem("loggedin")==2)
 					window.open("studentLogin.html","_self");
 		}
-	}); 
-	function add() 
-	{
-		var name = document.getElementById("student_name").value;
-		var username = document.getElementById("user_name").value;
-		var password = document.getElementById("password").value;
-		var cpassword= document.getElementById("cpassword").value ;
-
-		var len = name.length ;
-		var count =0 ;
-			
-			if(name!="" && username!="" && password!="" && cpassword!="")
+		$("#add").click(function(){
+			var name = ids.student_name.value;
+			var username = ids.user_name.value;
+			var password = ids.password.value;
+			var cpassword= ids.cpassword.value;
+			var len = name.length ;
+			var count =0 ;
+			if(ifEmpty())
 			{
 				if(onlyCharactersAllowed(name))
 				{
@@ -44,7 +44,6 @@
 								localStorage.setItem("students",JSON.stringify(students));
 								alert("Student Added Successfully");
 								window.open("teacherLogin.html","_self");
-
 							}
 							else 
 							{
@@ -65,7 +64,6 @@
 								else
 								{
 									var student = {
-
 										"username":username,
 										"name":name,
 										"password":password
@@ -100,9 +98,16 @@
 				document.getElementById("error").style.color = "red";
 				document.getElementById("error").innerText="Fields Cant be Empty";
 			}
-	}
+		});
 
-function cancel()
-{
-	window.open("teacherLogin.html","_self");
-}
+		$("#cancel").click(function() {
+			window.open("teacherLogin.html","_self");
+		});
+	}); 
+	function ifEmpty(){
+		if(name!="" && username!="" && password!="" && cpassword!=""){
+			return 	true;
+		}
+		else
+			return false ;
+	}

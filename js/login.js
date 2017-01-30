@@ -1,5 +1,4 @@
-
-		$(document).ready(function() { 
+		$(function() { 
 			if(localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")=="false" || localStorage.getItem("loggedin")==null)
 			{
 				// do nothing 
@@ -17,8 +16,6 @@
 					window.open("studentLogin.html","_self");		
 				}
 			}
-
-
 			$("#btn").click(function(){
 				var username = document.getElementById("username").value;
 				var password = document.getElementById("password").value;
@@ -55,8 +52,7 @@
 		}) ;
 			
 		});	
-		function checkIfEmpty(username,password)
-		{
+		function checkIfEmpty(username,password){
 			if(username.trim()=="" || password.trim()=="")
 				return true;
 			else 
@@ -73,7 +69,6 @@
 			}
 		}
 		function checkIfTeacher(username,password){
-
 
 			var count = 0 , flag = 0 ;
 			var teachersArray = JSON.parse(localStorage.getItem("teachersArray"));
