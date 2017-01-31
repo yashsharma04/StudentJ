@@ -11,9 +11,9 @@
 		}
 		else 
 		{
-			if(localStorage.getItem("loggedin")==0)
+			if(0==localStorage.getItem("loggedin"))
 					window.open("onLogin.html","_self");
-			else if(localStorage.getItem("loggedin")==2)
+			else if(2==localStorage.getItem("loggedin"))
 					window.open("studentLogin.html","_self");
 		}
 		$("#add").click(function(){
@@ -44,7 +44,7 @@
 								};
 								students.push(student);
 								localStorage.setItem("students",JSON.stringify(students));
-								alert("Student Added Successfully");
+								localStorage.setItem("error","Student Added Successfully");
 								window.open("teacherLogin.html","_self");
 							}
 							else 
@@ -58,8 +58,9 @@
 										count =1 ;
 									}
 								}
-								if (count==1)
+								if (1==count)
 								{
+									toEmpty();
 									document.getElementById("error").style.color = "red";
 									document.getElementById("error").innerText="UserName already exists";
 								}
@@ -72,33 +73,36 @@
 									}; 
 									students.push(student);
 									localStorage.setItem("students",JSON.stringify(students));
-									alert("Student Added Successfully");
+									localStorage.setItem("error","Student Added Successfully");
 									window.open("teacherLogin.html","_self");
 								}
 							}
 						}
 						else 
 						{	
-							document.getElementById("error").style.color = "red";
-							document.getElementById("error").innerText = "passwords dont match ";
+							toEmpty();
+							document.getElementById("error4").style.color = "red";
+							document.getElementById("error4").innerText = "Passwords dont match ";
 						}
 					}
 					else 
 					{
-						document.getElementById("error").style.color = "red";
-						document.getElementById("error").innerText =  "Password should be b/w 6 and 14 characters";
+						toEmpty();
+						document.getElementById("error3").style.color = "red";
+						document.getElementById("error3").innerText =  "Password should be b/w 6 and 14 characters";
 					}
 				}
 				else 
 				{
+					toEmpty();
 					document.getElementById("error").style.color = "red";
 					document.getElementById("error").innerText= "Only Characters Allowed in Name" ;
 				}
 			}
 			else
 			{
-				document.getElementById("error").style.color = "red";
-				document.getElementById("error").innerText="Fields Cant be Empty";
+				// document.getElementById("error").style.color = "red";
+				// document.getElementById("error").innerText="Fields Cant be Empty";
 			}
 		});
 
@@ -106,10 +110,37 @@
 			window.open("teacherLogin.html","_self");
 		});
 	}); 
+	function toEmpty(){
+		document.getElementById("error1").innerText = "";
+		document.getElementById("error2").innerText = "";
+		document.getElementById("error3").innerText = "";
+		document.getElementById("error4").innerText = "";
+	}
 	function ifEmpty(name,username,password,cpassword){
-		if(name!="" && username!="" && password!="" && cpassword!=""){
-			return 	true;
+		var count  =0 ;
+		if(name.trim()==""){
+			count =1 ;
+			document.getElementById("error1").style.color = "red";
+			document.getElementById("error1").innerText="Field Empty";
+		}
+		if(username.trim()==""){
+			count =1 ;
+			document.getElementById("error2").style.color = "red";
+			document.getElementById("error2").innerText="Field Empty";	
+		}
+		if(password.trim()==""){
+			count =1 ;
+			document.getElementById("error3").style.color = "red";
+			document.getElementById("error3").innerText="Field Empty";	
+		}
+		if(cpassword.trim()==""){
+			count =1 
+			document.getElementById("error4").style.color = "red";
+			document.getElementById("error4").innerText="Field Empty";	
+		}
+		if(count==1){
+			return 	false;
 		}
 		else
-			return false ;
+			return true ;
 	}

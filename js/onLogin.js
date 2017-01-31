@@ -9,7 +9,7 @@
 			"error":document.getElementById("error"),
 			"table2":document.getElementById("table2"),
 			"body2":document.getElementById("body2"),
-			"erro2":document.getElementById("error2"),
+			"error2":document.getElementById("error2"),
 			"ss":document.getElementById("ss"),
 			"hoddep":document.getElementById("hoddep"),
 			"hodteacher":document.getElementById("hodteacher"),
@@ -28,7 +28,11 @@
 			"makeHod":document.getElementById("makeHod"),
 			"dep":document.getElementById("dep")
 		};
-			console.log(ids.tea);
+		changeColor();
+		changeToNone();
+		ids.mainContent.style.display="block";
+		
+
 			if(localStorage.getItem("loggedin")==undefined || localStorage.getItem("loggedin")=="false" ){
 				window.open("index.html","_self");
 			}
@@ -41,10 +45,7 @@
 				populate();
 				if (localStorage.getItem("arr1")==undefined)
 				{
-					console.log("inside undefined");
 					var arr1 = [] ;
-					console.log(arr1.length);
-					console.log('arr1',arr1);
 					localStorage.setItem("arr1",JSON.stringify(arr1)); 
 				}
 				else 
@@ -83,7 +84,7 @@
 					var body =  ids.body;
 					body.innerHTML= "";
 				}
-				if (arr.length==0)
+				if (0==arr.length)
 				{
 					ids.error.innerText= "Nothing to show";
 					ids.error.style.display= "block";
@@ -108,22 +109,31 @@
 				ids.onlySubject.style.display= "block";
 				ids.onlyDepartment.style.display= "none";
 				var select = ids.ss;
-				var arr = JSON.parse(localStorage.getItem("subarray"));
-				select.innerHTML="";	
-				for(var i =0 ; i<arr.length;i++)
-				{
-					var option = document.createElement("option");
-					option.textContent = arr[i].subName;
-					select.appendChild(option);
+				var arr ; 
+				
+				if(localStorage.getItem("subarray")=="undefined" || localStorage.getItem("subarray")=="null" || localStorage.getItem("subarray")==null){
+					arr = [];
 				}
-				var subject =arr[0].subName;
-				var teachersArray = JSON.parse(localStorage.getItem("teachersArray"));
-				var arr = findTeacherBySubject(subject);
-				var table =ids.table2;
-				var body = ids.body2;
-				body.innerHTML= "";
+				else {
+						arr = JSON.parse(localStorage.getItem("subarray"));
 
-				if (arr.length==0)
+						select.innerHTML="";	
+						for(var i =0 ; i<arr.length;i++)
+						{
+							var option = document.createElement("option");
+							option.textContent = arr[i].subName;
+							select.appendChild(option);
+						}
+						var subject =arr[0].subName;
+						var teachersArray = JSON.parse(localStorage.getItem("teachersArray"));
+						var arr = findTeacherBySubject(subject);
+						var table = ids.table2;
+						var body = ids.body2;
+						body.innerHTML= "";
+				}
+				
+
+				if (0==arr.length)
 				{
 					ids.error2.innerText= "Nothing to show";
 					ids.error2.style.display= "block";
@@ -145,9 +155,18 @@
 
 			var department = ids.hoddep.value;
 			var teacher  = ids.hodteacher.value ;
-			if(teacher=="")
+			if(""==department && ""==teacher){
+				document.getElementById("msg").innerText= "No Department Available";
+				setTimeout(function(){ 
+					document.getElementById("msg").innerText="";
+				}, 1000);
+			}
+			else if(""==teacher)
 			{
-				alert("No teacher available in this department");
+				document.getElementById("msg").innerText= "No teacher Available in this Department";
+				setTimeout(function(){ 
+					document.getElementById("msg").innerText="";
+				}, 1000);
 			}
 			else
 			{
@@ -164,17 +183,31 @@
 					}
 				}
 				localStorage.setItem("teachersArray",JSON.stringify(teachersArray)) ;
-				alert("Hod Role Added");
-				window.open("onLogin.html","_self");
+
+				// window.open("onLogin.html","_self");
+				document.getElementById("msg").innerText= "Hod role added";
+				setTimeout(function(){ 
+					document.getElementById("msg").innerText="";
+				}, 1000);
+				$("#go_to_home").click() ;
 			}
 			});	
+			function changeColor(){
+				document.getElementById("btn1").style.backgroundColor = "#2bbbad";				
+				document.getElementById("btn2").style.backgroundColor = "#2bbbad";
+				document.getElementById("btn3").style.backgroundColor = "#2bbbad";
+			}
 			$("#btn1").click(function(){
+				changeColor();
+				document.getElementById("btn1").style.backgroundColor = "#2EBBD0";
 				changeToNone();
-				ids.subd.style.display= "block" ;
+				document.getElementById("add_department").style.display="block";
 				document.getElementsByName("dep")[0].style.display="block";
 			});
 			$("#btn2").click(function(){
+				changeColor();
 				changeToNone();
+				document.getElementById("btn2").style.backgroundColor = "#2EBBD0";
 				ids.tea.style.display= "block" ;
 				ids.subt.style.display= "block";
 				ids.select_subjects.style.display= "block";
@@ -211,6 +244,8 @@
 			});
 			$("#btn3").click(function(){
 				changeToNone();
+				changeColor();
+				document.getElementById("btn3").style.backgroundColor = "#2EBBD0";
 				ids.sub.style.display= "block" ;
 				ids.subs.style.display= "block";
 				ids.select.style.display= "block";
@@ -227,17 +262,33 @@
 			$("#subd").click(function(){
 
 				var department =document.getElementsByName("dep")[0].value;
-				if(department.trim()==""){
-					alert("Field Empty");
+				if(""==department.trim()){
+					document.getElementById("err_dep").innerText= "Field Empty";
+					setTimeout(function(){ 
+					document.getElementById("err_dep").innerText="";
+				}, 1500);
+				
 				}
 				else if(!checkFromDepartments(department)){
-					alert("Choose from Existing Departments");
+					
+					document.getElementById("err_dep").innerText= "Choose from existing Departments";
+					setTimeout(function(){ 
+						document.getElementById("err_dep").innerText="";
+					}, 1500);
+				
 				}
 				else if(department.length<5 || department.length>20){
-					alert("Length between 5 and 14");
+					document.getElementById("err_dep").innerText= "Length Has to be between 5 and 20";
+					setTimeout(function(){ 
+						document.getElementById("err_dep").innerText="";
+					}, 1500);
 				}
 				else if (!onlyCharactersAllowed(department)){
-					alert("Only Characters allowed in department Name");	
+					document.getElementById("err_dep").innerText= "Only Characters allowed in department Name";
+					setTimeout(function(){ 
+						document.getElementById("err_dep").innerText="";
+					}, 1500);
+				
 				}
 				else 
 				{
@@ -250,14 +301,21 @@
 					    		count = 1 ; 
 					    	}
 					    }
-					    if(count ==1){
-					    	alert("department already exists");
+					    if(1==count){
+					    	document.getElementById("err_dep").innerText= "department already exist";
+							setTimeout(function(){ 
+							document.getElementById("err_dep").innerText="";
+							}, 1500);
+					    	
 					    	return false ;
 					    }
 					    yash.push(department);
 					    localStorage.setItem("arr1",JSON.stringify(yash));
-					    alert("department added");
-					    window.open("onLogin.html","_self");
+					    document.getElementById("msg").innerText= "Department added";
+						setTimeout(function(){ 
+							document.getElementById("msg").innerText="";
+						}, 1500);
+					    $("#go_to_home").click();
 					} 
 					else 
 					{
@@ -267,18 +325,23 @@
 			});
 			$("#subt").click(function(){
 
-				// alert(localStorage.getItem("teachersArray"));
 				if (localStorage.getItem("teachersArray") ==undefined){
 					var teacher_name =ids.tea.value;
 					if(""==teacher_name.trim()){
-						alert("Please Enter Username ");
+						document.getElementById("err_teacher").innerText= "Enter Username";
+						setTimeout(function(){ 
+							document.getElementById("err_teacher").innerText="";
+						}, 1500);
 					}
 					else
 					{	
 						var department= ids.select_departments.value;
 						var subject = ids.select_subjects.value;
-						if(department=="" || subject==""){
-							alert("No value Selected");
+						if(""==department || ""==subject){
+							document.getElementById("err_teacher").innerText= "No Value Selected";
+							setTimeout(function(){ 
+								document.getElementById("err_teacher").innerText="";
+						}, 1500);
 						}
 						else
 						{
@@ -308,8 +371,11 @@
 							};
 							personalArray.push(personal);
 							localStorage.setItem("personalArray",JSON.stringify(personalArray));
-							alert("Teacher added");
-							window.open("onLogin.html","_self");
+							document.getElementById("msg").innerText= "Enter Username";
+							setTimeout(function(){ 
+							document.getElementById("msg").innerText="";
+						}, 1500);
+							$("#go_to_home").click();
 						}
 					}
 				}
@@ -318,13 +384,19 @@
 					var department= ids.select_departments.value;
 					var subject = ids.select_subjects.value;
 					
-					if(department=="" || subject==""){
-						alert("No value Selected");
+					if(""==department || ""==subject){
+						document.getElementById("err_teacher").innerText= " No value selected";
+						setTimeout(function(){ 
+							document.getElementById("err_teacher").innerText="";
+						}, 1500);
 					}
 					else{
 						var teacher_name = ids.tea.value;
 						if(""==teacher_name.trim()){
-							alert("Enter UserName");
+							document.getElementById("err_teacher").innerText= "Enter Username";
+						setTimeout(function(){ 
+							document.getElementById("err_teacher").innerText="";
+						}, 1500);
 						}
 						else
 						{
@@ -344,12 +416,15 @@
 									index = i ;
 								}
 							}
-							if(flag==1)
+							if(1==flag)
 							{
 								teachersArray[index].sub_name.push(subject);
 								localStorage.setItem("teachersArray",JSON.stringify(teachersArray));
-								alert("Subject Added");
-								window.open("onLogin.html","_self");
+								document.getElementById("err_teacher").innerText= "Subject added ";
+								setTimeout(function(){ 
+									document.getElementById("err_teacher").innerText="";
+								}, 1500);
+								$("#go_to_home").click();
 							}
 							else
 							{
@@ -363,8 +438,11 @@
 										};
 								teachersArray.push(teacher);
 								localStorage.setItem("teachersArray",JSON.stringify(teachersArray));
-								alert("Teacher Added");
-								window.open("onLogin.html","_self");
+								document.getElementById("msg").innerText= "Teacher added";
+								setTimeout(function(){ 
+									document.getElementById("err_teacher").innerText="";
+								}, 1500);
+								$("#go_to_home").click();
 							}
 							
 						}
@@ -373,29 +451,46 @@
 				}
 			});
 				$("#subs").click(function(){
-				var subjectValue  = ids.sub.value ;
+				var subjectValue = ids.sub.value ;
 				if(""==subjectValue.trim()){
-					alert("Field Empty!");
+					document.getElementById("err_subject").innerText= "Field Empty";
+						setTimeout(function(){ 
+							document.getElementById("err_subject").innerText="";
+						}, 1500);
 				}
 				else {
 					if (localStorage.getItem("subarray")==undefined){
 						var subjectValue  = ids.sub.value ;
 						var e = ids.select;
-						var department = e.options[e.selectedIndex].value;
-						var subarray =[];
-						var subjects = {};
-						// subarray.subjects = subjects ;
-						var subject = {
-							  "subName": subjectValue,
-							  "department": department
-							}
-						subarray.push(subject);
-						localStorage.setItem("subarray",JSON.stringify(subarray));
-						alert("Subject added ");
-						window.open("onLogin.html","_self");
+						if(""!=e.value){
+							var department = e.options[e.selectedIndex].value;
+							var subarray =[];
+							var subjects = {};
+							// subarray.subjects = subjects ;
+							var subject = {
+								  "subName": subjectValue,
+								  "department": department
+								}
+							subarray.push(subject);
+							localStorage.setItem("subarray",JSON.stringify(subarray));
+							document.getElementById("err_subject").innerText= "Subject Added";
+							setTimeout(function(){ 
+								document.getElementById("err_subject").innerText="";
+							}, 1500);
+							$("#go_to_home").click();
+						}
+						else{
+							document.getElementById("err_subject").innerText="No department Available";
+							setTimeout(function(){ 
+								document.getElementById("err_subject").innerText="";
+							}, 1500);
+
+						}
+
 					}
 					else if(!subjectAlreadyExists(subjectValue))
 					{
+
 						var subarray= JSON.parse(localStorage.getItem("subarray"));
 						var subjectValue  = ids.sub.value ;
 						var e = ids.select;
@@ -404,8 +499,11 @@
 						{
 							if(subarray[i].subName==subjectValue && subarray[i].department==department)
 							{
-							alert("Subject in This department already exists");
-							return false; 
+								document.getElementById("err_subject").innerText= "Subject in this department already exists";
+								setTimeout(function(){ 
+									document.getElementById("err_subject").innerText="";
+								}, 1500);
+								return false; 
 							}
 						}
 						var subject = {
@@ -414,16 +512,24 @@
 							}
 						subarray.push(subject);
 						localStorage.setItem("subarray",JSON.stringify(subarray));
-						alert("Subject added ");
-						window.open("onLogin.html","_self");
+						document.getElementById("err_subject").innerText= "Subject added";
+						setTimeout(function(){ 
+							document.getElementById("err_subject").innerText="";
+						}, 1500);
+						
+						$("#go_to_home").click();
 					}
 					else 
 					{
-						alert("This subject is already existing");
+						document.getElementById("err_subject").innerText= "Subject Already exists";
+						setTimeout(function(){ 
+							document.getElementById("err_subject").innerText="";
+						}, 1500);
 					}
 				}
 			});
 			$("#go_to_home").click(function(){
+				changeColor();
 				changeToNone();
 				ids.mainContent.style.display="block";
 			});
@@ -452,22 +558,25 @@
 
 				var teachers = [] ;
 				var teachersArray = JSON.parse(localStorage.getItem("teachersArray"));
-				for(var i =0 ;i<teachersArray.length ; i++)
-				{
-					if(teachersArray[i].dep_name==departments[0])
+				if(localStorage.getItem("teachersArray")!=null){
+					for(var i =0 ;i<teachersArray.length ; i++)
 					{
-						// alert(teachersArray[i].user_name);
-						teachers.push(teachersArray[i].user_name) ;
+						if(teachersArray[i].dep_name==departments[0])
+						{
+							
+							teachers.push(teachersArray[i].user_name) ;
+						}
+					}
+					var select_teacher = ids.hodteacher;
+					select_teacher.innerHTML="";
+					for(var i=0 ;i<teachers.length;i++)
+					{
+						var option = document.createElement("option");
+						option.textContent = teachers[i];
+						select_teacher.appendChild(option);
 					}
 				}
-				var select_teacher = ids.hodteacher;
-				select_teacher.innerHTML="";
-				for(var i=0 ;i<teachers.length;i++)
-				{
-					var option = document.createElement("option");
-					option.textContent = teachers[i];
-					select_teacher.appendChild(option);
-				}
+				
 			});
 		});
 		var givenDepartments = ["Computer Science","Electronics","Mechanical","Civil","Mechatronics","Information Technology","Chemical","BioMed"] ; 
@@ -490,11 +599,13 @@
 			return false; 
 		}
 		function changeToNone(){
-			document.getElementById("dep").style.display= "none";
+			document.getElementById("add_department").style.display= "none";
+			// document.getElementById("dep").style.display= "none";
+			// document.getElementsByName("dep")[0].style.display="none";
+			// ids.subd.style.display= "none";
+			ids.subt.style.display= "none";
 			ids.tea.style.display= "none";
 			ids.sub.style.display= "none";
-			ids.subd.style.display= "none";
-			ids.subt.style.display= "none";
 			ids.subs.style.display= "none";
 			ids.select.style.display= "none";
 			ids.select_subjects.style.display= "none";
@@ -503,16 +614,14 @@
 			ids.makeHod.style.display="none";
 			ids.onlySubject.style.display= "none";
 			ids.onlyDepartment.style.display= "none";
-			document.getElementsByName("dep")[0].style.display="none";
+			
 		}
 		function onSubjectChange(){
 			var subject = ids.ss.value;
-			// alert(department);
 			var teachersArray = JSON.parse(localStorage.getItem("teachersArray"));
 			// var table = document.createElement();
 			var arr= [] ;
 			for(var i=0 ; i<teachersArray.length;i++) {
-				// alert(teachersArray[i].sub_name.length);
 				for(var j=0;j<teachersArray[i].sub_name.length;j++) {
 					if(teachersArray[i].sub_name[j]==subject) {
 						arr.push(teachersArray[i].user_name);
@@ -522,14 +631,13 @@
 			var table = ids.table2;
 			var body =  ids.body2;
 			body.innerHTML= "";
-			if (arr.length==0){
+			if (0==arr.length){
 				ids.error2.innerText= "Nothing to show";
 				ids.error.style.display= "block";
 				ids.table2.style.display="none";
 			}
 			else {
 				for(var i=0;i<arr.length;i++){
-					// alert(arr[i]);
 					var row = body.insertRow(0);
 					var cell1 = row.insertCell(0);
 					var cell2 = row.insertCell(1);
@@ -556,7 +664,7 @@
 			var table = ids.table;
 			var body =  ids.body;
 			body.innerHTML= "";
-			if (arr.length==0)
+			if (0==arr.length)
 			{
 
 				ids.error.innerText= "Nothing to show";
@@ -597,27 +705,28 @@
 			return arr ; 
 		}
 		function changeHodDepartment(){
+		
 			var dep_value = ids.hoddep.value;
 			var select_teacher = ids.hodteacher;
 			var teachersArray = JSON.parse(localStorage.getItem("teachersArray"));
-			var subjectArray = [] ;
+			var teachers = [] ;
 			for(var i=0;i<teachersArray.length ;i++)
 			{
 				if(teachersArray[i].dep_name == dep_value)
 				{
-					subjectArray.push(teachersArray[i].teacher_name);
+					teachers.push(teachersArray[i].user_name);
 				}
 			}
 			select_teacher.innerHTML= "" ;	
-			for(var i=0 ;i<subjectArray.length ; i++)
+			for(var i=0 ;i<teachers.length ; i++)
 			{
 				var option = document.createElement("option");
-				option.textContent= subjectArray[i];
+				option.textContent= teachers[i];
 				select_teacher.appendChild(option);
 			}
 		}
 		function change_subjects(obj){
-			// alert(obj.value);
+			
 			var department = obj.value ; 
 			var select_subjects= ids.select_subjects;
 			for(var i =select_subjects.length -1; i>=0;i--)
@@ -636,11 +745,17 @@
 			}
 		}
 		function subjectAlreadyExists(str){
-			var subjects = JSON.parse(localStorage.getItem("subarray"));
-			for(var i=0;i<subjects.length;i++){
-				if(subjects[i]==str){
-					return true;
+			if(localStorage.getItem("subarray")!="undefined"){
+				var subjects = JSON.parse(localStorage.getItem("subarray"));
+				for(var i=0;i<subjects.length;i++){
+					if(subjects[i]==str){
+						return true;
+					}
 				}
+				return false;	
 			}
-			return false;
+			else{
+				return false ;
+			}
+			
 		}

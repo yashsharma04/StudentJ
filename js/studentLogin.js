@@ -4,9 +4,9 @@ $(function(){
 	{
 		window.open("index.html","_self");
 	}
-	else if(localStorage.getItem("loggedin")==0)
+	else if(0==localStorage.getItem("loggedin"))
 					window.open("onLogin.html","_self");
-	else if(localStorage.getItem("loggedin")==1)
+	else if(1==localStorage.getItem("loggedin"))
 					window.open("teacherLogin.html","_self");
 	else 
 	{

@@ -2,12 +2,8 @@ function onlyCharactersAllowed(str){
 	var flag =0 ;
 	for(var i =0 ; i<str.length ;i++){
 
-		if((str.charCodeAt(i)>64 && str.charCodeAt(i)<92 ) || (str.charCodeAt(i)>96 && str.charCodeAt(i)<123) || (str.charCodeAt(i)==32)){
-			
-		}
-		else {
+		if(!((str.charCodeAt(i)>64 && str.charCodeAt(i)<92 ) || (str.charCodeAt(i)>96 && str.charCodeAt(i)<123) || (str.charCodeAt(i)==32)))
 			flag = 1; 
-		}
 	}
 	if(0==flag){
 		return true;

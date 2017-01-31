@@ -15,39 +15,36 @@
 	<nav>
 	  <ul>
 	    <li>
-	    <button class="btnlist" id="go_to_home"  type="button">Home</button>
-	    <!-- <a class='btnlist' href="#">Show Departments</a> -->
+	    <button class="btnlist" id="go_to_home"  type="button">Home</button>	
 	    </li>
 	    <li><button class="btnlist" id="make_hod" type="button">Make HOD</button></li>
 	    <li><button class="btnlist" id="show_teachers" type="button">Show Teachers</button></li>
 	  </ul>
 	</nav>
 	<div id='mainContent'>
-		<button type="button" id='btn1' class='btn' >Add Department</button>
-		<br><br>
-		<button type="button" id='btn2' class='btn' >Add Teachers</button>
-		<br><br>
-		<button type="button" id='btn3' class='btn' >Add Subjects </button>
-		<br><br>
-		<input list="dep" name="dep">
-		<datalist id="dep">
-		</datalist>
-		<br><br>
-		<button type="button" id='subd' class='btn' >Submit Department</button>
-		<br><br>
+		<button type="button" id='btn1' class='btn' > Add Department </button>
+		<button type="button" id='btn2' class='btn' > Add Teachers </button>
+		<button type="button" id='btn3' class='btn' > Add Subjects </button>
+		<div id="add_department">
+			<br><br>
+			<input list="dep" name="dep">
+			<datalist id="dep" >
+			</datalist><label id="err_dep"></label>
+			<br><br>
+			<button type="button" id='subd' class='btn' >Submit Department</button>	
+		</div><br><br>
 		<input type="text" id="sub" name="sub" placeholder="Add a Subject ">
 		<br><br>
 		<select id='select'></select>
-		<br><br>
+		<br><label id="err_subject"></label>
 		<button type="button" id='subs' class='btn'>Submit Subject</button>
-		<br>
 		<input type="text" id="tea" name="tea" placeholder="Teacher Username">
 		<br>
 		<br>
 		<select id="select_departments" onchange="change_subjects(this)"> 
 		</select>
 		<select id='select_subjects'>
-		</select><br><br>
+		</select><br><br><label id="err_teacher"></label>
 		<button type="button" id='subt' class='btn'>Submit Teacher</button>
 		<div id='content'>
 		</div>
@@ -105,5 +102,6 @@
 			</tbody>
 		</table>
 	</div>
+	<label id="msg"></label>
 </body>
 </html>

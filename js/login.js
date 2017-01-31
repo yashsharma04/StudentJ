@@ -20,8 +20,6 @@
 				var username = document.getElementById("username").value;
 				var password = document.getElementById("password").value;
 				if(checkIfEmpty(username,password)){
-					document.getElementById("lb").innerText = "Fields Empty";
-					document.getElementById("lb").style.color = "red";
 					return false ;			
 				}
 				else if (checkIfAdmin(username,password)){
@@ -44,6 +42,8 @@
 					window.location.href="studentLogin.html";
 				}
 				else{
+					document.getElementById("error_u").style.display="none";
+					document.getElementById("error_p").style.display="none";
 					document.getElementById("lb").innerText = "UserName or Password wrong";
 					document.getElementById("lb").style.color = "red";
 					return false ;			
@@ -53,10 +53,22 @@
 			
 		});	
 		function checkIfEmpty(username,password){
-			if(username.trim()=="" || password.trim()=="")
-				return true;
+			var count = 0 ;
+			if(username.trim()==""){
+				document.getElementById("error_u").innerText = "Username Empty";
+				document.getElementById("error_u").style.color = "red";
+				count =1 ;
+			}
+			if(password.trim()==""){
+				document.getElementById("error_p").innerText = "Password Empty";
+				document.getElementById("error_p").style.color = "red";
+				count =1 ;
+			}
+			if(0==count)
+				return false ;
 			else 
-				return false;
+				return true ;
+
 		}
 		function checkIfAdmin(username,password){
 

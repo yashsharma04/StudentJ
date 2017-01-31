@@ -25,8 +25,8 @@
 			var phno = document.getElementById("phno").value;
 			var address = document.getElementById("address").value;
 			var hsc = document.getElementById("hsc").value;
-			// alert(phno);
-			if ()
+			
+			if (ifEmpty(phno,address,hsc))
 			{
 				document.getElementById("error").innerText= "Fields Can't be Empty";
 				document.getElementById("error").style.color = "red";	
@@ -51,7 +51,7 @@
 						students[i].address=address;
 						students[i].hsc=hsc;
 						localStorage.setItem("students",JSON.stringify(students));
-						alert("Details Saved");
+						
 						window.open("studentLogin.html","_self");
 						break;  
 					}
@@ -63,7 +63,7 @@
 			window.open("studentLogin.html","_self");
 		});
 	}); 
-	function ifEmpty(){
+	function ifEmpty(phno,address,hsc){
 		if(phno=="" || address=="" || hsc==""){
 			return true ;
 		}

@@ -1,4 +1,13 @@
 $(function(){ 
+
+	if(localStorage.getItem("error")!="undefined" && localStorage.getItem("error")!=""){
+		document.getElementById("msg").innerText=localStorage.getItem("error");
+		localStorage.setItem("error","");
+		setTimeout(function(){ 
+			document.getElementById("msg").innerText="";
+
+		}, 1500);
+	}
 	var ids = {
 		"teacher_name":document.getElementById("teacher_name"),
 		"dept_name":document.getElementById("dept_name"),

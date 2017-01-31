@@ -10,8 +10,22 @@ $(function() {
 			"hsc":document.getElementById("hsc"),
 			"bach":document.getElementById("bach"),
 			"masters":document.getElementById("masters"),
-			"error":document.getElementById("error")
+			"error":document.getElementById("error"),
+			"error1":document.getElementById("error1"),
+			"error2":document.getElementById("error2"),
+			"error3":document.getElementById("error3"),
+			"error4":document.getElementById("error4"),
+			"error5":document.getElementById("error5"),
+			"errorn":document.getElementById("errorn")
 	};
+	function toNone(){
+		document.getElementById("errorn").innerText="";
+		document.getElementById("error1").innerText="";
+		document.getElementById("error2").innerText="";
+		document.getElementById("error3").innerText="";
+		document.getElementById("error4").innerText="";
+		document.getElementById("error5").innerText="";
+	}
 	if (localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")==null || localStorage.getItem("loggedin")=="false")
 	{
 		window.open("index.html","_self");
@@ -53,23 +67,30 @@ $(function() {
 		var hsc = ids.hsc.value;
 		var bach = ids.bach.value;
 		var masters = ids.masters.value;
-
+		var flag =0 ;
+		toNone();
 		if(!onlyCharactersAllowed(teacher_name))
 		{
-			ids.error.innerText= "Only Characters allowed in name";
-			ids.error.style.color = "red";	
+			
+			ids.errorn.innerText= "Only Characters allowed in name";
+			ids.errorn.style.color = "red";	
+			flag =1 ;
+
 		}
-		else if(!checkNumber(phno))
+		if(!checkNumber(phno))
 		{
-			ids.error.innerText= "Undefined Phone Number";
-			ids.error.style.color = "red";
+			
+			ids.error1.innerText= "Undefined Phone Number";
+			ids.error1.style.color = "red";
+			flag =1; 
 		}
-		else if (!checkAddress(address))
+		if (!checkAddress(address))
 		{
-			ids.error.innerText= "Minimum 5 characters in Address Required";
-			ids.error.style.color = "red";			
+			ids.error2.innerText= "Minimum 5 characters in Address Required";
+			ids.error2.style.color = "red";			
+			flag =1 ;
 		}
-		else 
+		if(0==flag)
 		{
 			for(var i =0 ;i<personalArray.length;i++)
 			{

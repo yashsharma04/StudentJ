@@ -3,19 +3,19 @@
 	text-align: center ;
 	margin:auto ;
 	border: 2px solid ;
-	width: 40%;
+	width: 80%;
 	padding: 10px;
 	margin-top: 150px ;
 
 }
 .btn1 
 {
-		background-color: #4CAF50; 
-		border: none;	
-		color: white;
-		text-align: center;
-
-		font-size: 18px;
+	background-color: #4CAF50; 
+	border: none;	
+	color: white;
+	text-align: center;
+	font-size: 18px;
+	cursor: pointer; 
 }
 input[type="text"]
 {

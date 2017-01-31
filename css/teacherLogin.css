@@ -36,10 +36,10 @@
 	text-decoration: none;
 	padding: 10px;
 	color:white;
-
-
+	cursor: pointer; 
 }
-nav {
+nav 
+{
     float: left;
     max-width: 	170px;
     /*margin: 0;*/
@@ -47,19 +47,11 @@ nav {
     height: 600px	;
 	border-right: 2px solid;
 	margin-right: 20px;
-    /*background-color: grey;		*/
 
 }
 nav ul {
     list-style-type: none;
-
-    /*padding: 0;*/
 }
-   
-/*nav ul a {
-    text-decoration: none;
-}*/
-
 .btnlist
 {
 
@@ -71,13 +63,5 @@ nav ul {
 	border: none ;
 	font-size: 16px;
 	float: left;
-
-	
+	cursor: pointer; 
 }
-/*.sidebar 
-{
-	border: 1px solid ;
-	float: right;
-	height: 600px; 
-	width: none;
-}*/
