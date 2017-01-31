@@ -17,13 +17,15 @@
 					window.open("studentLogin.html","_self");
 		}
 		$("#add").click(function(){
+
 			var name = ids.student_name.value;
 			var username = ids.user_name.value;
 			var password = ids.password.value;
 			var cpassword= ids.cpassword.value;
 			var len = name.length ;
+
 			var count =0 ;
-			if(ifEmpty())
+			if(ifEmpty(name,username,password,cpassword))
 			{
 				if(onlyCharactersAllowed(name))
 				{
@@ -104,7 +106,7 @@
 			window.open("teacherLogin.html","_self");
 		});
 	}); 
-	function ifEmpty(){
+	function ifEmpty(name,username,password,cpassword){
 		if(name!="" && username!="" && password!="" && cpassword!=""){
 			return 	true;
 		}
