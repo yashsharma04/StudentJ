@@ -2,7 +2,7 @@ $(function(){
 
 	if(localStorage.getItem("loggedin")=="admin" || localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")=="false" || localStorage.getItem("loggedin")== null)
 	{
-		window.open("login.html","_self");
+		window.open("index.html","_self");
 	}
 	else if(localStorage.getItem("loggedin")==0)
 					window.open("onLogin.html","_self");

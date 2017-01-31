@@ -36,5 +36,5 @@ function checkNumber(phno)
 }
 function logout(){
 	localStorage.setItem("loggedin","false");
-	window.open("login.html","_self");
+	window.open("index.html","_self");
 }

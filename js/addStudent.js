@@ -7,7 +7,7 @@
 		};
 		if (localStorage.getItem("loggedin")=="undefined" || localStorage.getItem("loggedin")==null || localStorage.getItem("loggedin")=="false")
 		{
-			window.open("login.html","_self");
+			window.open("index.html","_self");
 		}
 		else 
 		{

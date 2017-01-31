@@ -30,7 +30,7 @@
 		};
 			console.log(ids.tea);
 			if(localStorage.getItem("loggedin")==undefined || localStorage.getItem("loggedin")=="false" ){
-				window.open("login.html","_self");
+				window.open("index.html","_self");
 			}
 			else if(localStorage.getItem("loggedin")==1)
 				window.open("teacherLogin.html","_self");

@@ -10,37 +10,36 @@
 <body>
 	<div class='header'  data-position="fixed" >
 		<p class='admin' >Admin</p>
-		<a href="login.html" onclick="logout()" class='logout'>Logout</a>	
+		<a href="index.html" onclick="logout()" class='logout'>Logout</a>	
 	</div>
 	<nav>
 	  <ul>
 	    <li>
-	    <button class="btnlist" onclick="gotoHome()" type="button">Home</button>
+	    <button class="btnlist" id="go_to_home"  type="button">Home</button>
 	    <!-- <a class='btnlist' href="#">Show Departments</a> -->
 	    </li>
-	    <li><button class="btnlist" onclick="makeHod()" type="button">Make HOD</button></li>
-	    <li><button class="btnlist" onclick="showTeachers()" type="button">Show Teachers</button></li>
+	    <li><button class="btnlist" id="make_hod" type="button">Make HOD</button></li>
+	    <li><button class="btnlist" id="show_teachers" type="button">Show Teachers</button></li>
 	  </ul>
 	</nav>
 	<div id='mainContent'>
-		<button type="button" id='btn1' class='btn' onclick="return showDepartments();" >Add Department</button>
+		<button type="button" id='btn1' class='btn' >Add Department</button>
 		<br><br>
-		<button type="button" id='btn2' class='btn' onclick="return showTeachers();" >Add Teachers</button>
+		<button type="button" id='btn2' class='btn' >Add Teachers</button>
 		<br><br>
-		<button type="button" id='btn3'  class='btn' onclick="return showSubjects();">Add Subjects </button>
+		<button type="button" id='btn3' class='btn' >Add Subjects </button>
 		<br><br>
-		<!-- <input type="text" id="dep" name="dep" placeholder="Add a Department "> -->
 		<input list="dep" name="dep">
 		<datalist id="dep">
 		</datalist>
 		<br><br>
-		<button type="button" id='subd' class='btn' onclick="submitDepartment()" >Submit Department</button>
+		<button type="button" id='subd' class='btn' >Submit Department</button>
 		<br><br>
 		<input type="text" id="sub" name="sub" placeholder="Add a Subject ">
 		<br><br>
 		<select id='select'></select>
 		<br><br>
-		<button type="button" id='subs' class='btn' onclick="submitStudent()" >Submit Subject</button>
+		<button type="button" id='subs' class='btn'>Submit Subject</button>
 		<br>
 		<input type="text" id="tea" name="tea" placeholder="Teacher Username">
 		<br>
@@ -49,25 +48,23 @@
 		</select>
 		<select id='select_subjects'>
 		</select><br><br>
-		<button type="button" class='btn' onclick="submitTeacher()" id='subt'>Submit Teacher</button>
+		<button type="button" id='subt' class='btn'>Submit Teacher</button>
 		<div id='content'>
 		</div>
 	</div>
 	<div id='showTeacher'>
-		<button type="button" onclick="byDepartment(this)" class='btn' >By Department</button>
-		<button type="button" onclick="bySubject()" class='btn'>By Subject</button>
+		<button type="button" id="by_department" class='btn' >By Department</button>
+		<button type="button" id="by_subject" class='btn'>By Subject</button>
 	</div>
 	<div id='makeHod'>
 		<label>Choose Department and Teacher </label><br><br>
-		
 		<select id='hoddep' onchange="changeHodDepartment()">
-			
 		</select>
 		<select id="hodteacher">
 			
 		</select>
 		<br><br>
-		<button class="btn" onclick="makeHodFinal()" type="button">Make Hod</button>
+		<button class="btn" id="make_hod_final" type="button">Make Hod</button>
 	</div>
 	<br>
 	<br>
